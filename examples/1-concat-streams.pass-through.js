@@ -13,12 +13,12 @@ const requests = await Promise.all([
     
     axios({
         method: 'get',
-        url: API_01,
+        url: API_02,
         responseType: 'stream'
     }),
 ]);
 
-const result = requests.map(({data}) => data);
+const result = requests.map(response => response.data);
 
 const output = Writable({
     write(chunck, encoding, cb) {

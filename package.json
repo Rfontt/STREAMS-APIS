@@ -9,7 +9,7 @@
     "start-server": "mkdir -p logs && node webapi.js",
     "api1": "curl localhost:3000 | tee logs/api1.log",
     "api2": "curl localhost:4000 | tee logs/api2.log",
-    "example01": "node examples/1-concat-streams.pass-through.js"
+    "example01": "node examples/1-concat-streams.pass-through.js | tee logs/example01.log"
   },
   "keywords": [],
   "author": "Rfontt",
