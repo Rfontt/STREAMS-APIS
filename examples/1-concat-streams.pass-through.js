@@ -1,8 +1,8 @@
 import { Writable, Readable } from 'stream';
 import axios from "axios";
 
-const API_01 = 'http:localhost:3000';
-const API_02 = 'http:localhost:4000';
+const API_01 = 'http://localhost:3000';
+const API_02 = 'http://localhost:4000';
 
 const requests = await Promise.all([
     axios({
@@ -10,15 +10,15 @@ const requests = await Promise.all([
         url: API_01,
         responseType: 'stream'
     }),
-    
+
     axios({
         method: 'get',
         url: API_02,
         responseType: 'stream'
-    }),
+    })
 ]);
 
-const result = requests.map(response => response.data);
+const results = requests.map(({ data }) => data)
 
 const output = Writable({
     write(chunck, encoding, cb) {
@@ -30,4 +30,4 @@ const output = Writable({
     }
 });
 
-result[0].pipe(output)
+results[0].pipe(output)
